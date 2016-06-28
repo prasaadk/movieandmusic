@@ -7,6 +7,10 @@ import org.mashup.entertainment.model.Movie;
 
 import rx.Observable;
 
+/**
+ * This class will render the text output as per the required format. 
+ * @author prasad
+ */
 public class ConsoleOutputRenderer implements IOutputRenderer {
 	
 	private PrintStream stream;

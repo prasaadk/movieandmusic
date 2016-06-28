@@ -1,8 +1,10 @@
 package org.mashup.entertainment.services.imdb;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Set;
 
+import org.mashup.entertainment.SearchEndpointException;
 import org.mashup.entertainment.services.IMovieSearchEndpoint;
 
 import com.google.common.collect.Sets;
@@ -12,9 +14,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
-/** IMDB Open search endpoints
- * 
+/** 
+ * IMDB Open search endpoints
  * @author prasad
  *
  */
@@ -23,7 +26,7 @@ public class IMDBSource1SearchEndpoint implements IMovieSearchEndpoint {
 	public static final String MOVIE_URI="http://www.omdbapi.com/?";
 	
 	@Override
-	public Set<String> searchMovie(String movieName) {
+	public Set<String> searchMovie(String movieName) throws SearchEndpointException {
         try {
         	String urlParameters = "s="+URLEncoder.encode(movieName,"UTF-8")+"&plot=short&r=json";
             
@@ -46,9 +49,12 @@ public class IMDBSource1SearchEndpoint implements IMovieSearchEndpoint {
 			}
 			
             return movies;
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		} catch (UnsupportedEncodingException e) {
+			// Unlikely, as UTF-8 is a standard encoding. If the system has a
+			// log framework configured, a warning should be added.
+		} catch (UnirestException e) {
+			throw new SearchEndpointException("Unable to find movie for the name '"+movieName, e);
+		}            
         return null;
 	}
 	

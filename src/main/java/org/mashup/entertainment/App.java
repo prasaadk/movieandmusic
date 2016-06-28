@@ -19,7 +19,7 @@ import org.mashup.entertainment.services.MovieServiceRegistry;
 import rx.Observable;
 
 /**
- * Hello world!
+ * This application queries public APIs for information about movies. 
  *
  */
 public class App 
@@ -49,11 +49,19 @@ public class App
 			IOutputRenderer renderer = new ConsoleOutputRenderer(System.out);
 			renderer.render(movies);
 		} catch (ParseException e) {
-			// TODO : Exception handling
-			e.printStackTrace();
+			System.out.println("Unable to parse commandline parameters. Please see the usage.");
+			System.out.println("java -jar <jar-path> -Dapi=<api-name> -Dmovie='<movie-name>'");
+		} catch (MovieServiceException e) {
+			System.out.println("Unable to find movie due to the following exception");
+			System.out.println(e.getMessage());
 		}
     }
 
+    /**
+     * Added a custom filter to exclude movies whose release Year is a future date.
+     * @param movies observable of movies
+     * @return filtered observable of movies
+     */
 	private static Observable<Movie> filter(Observable<Movie> movies) {
 		return movies.filter(movie->{
 			

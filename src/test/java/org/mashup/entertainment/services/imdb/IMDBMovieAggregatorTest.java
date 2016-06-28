@@ -32,7 +32,7 @@ public class IMDBMovieAggregatorTest {
 	}
 	
 	@Test
-	public void testEndpointWithOneMovie() {
+	public void testEndpointWithOneMovie() throws Exception {
 		final String movieId = "tt0097576";
 		final String movie = "movieName";
 		
@@ -167,6 +167,11 @@ public class IMDBMovieAggregatorTest {
 		Movie first = movies.toBlocking().first();
 		Movie movie1Obj = new Movie("Indiana Jones and the Last Crusade","Steven Spielberg","1989");
 		assertEquals("Should be equal", movie1Obj, first);
+	}
+	
+	@Test
+	public void test() throws Exception {
+		
 	}
 
 }

@@ -2,6 +2,10 @@ package org.mashup.entertainment.model;
 
 import com.google.common.base.Objects;
 
+/**
+ * Represents the Movie model 
+ * @author prasad
+ */
 public class Movie {
 	private String title;
 	private String director;

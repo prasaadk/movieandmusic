@@ -6,6 +6,11 @@ import org.mashup.entertainment.services.imdb.IMDbMovieService;
 
 import com.google.common.collect.Maps;
 
+/**
+ * Registers several movie finder APIs
+ * @author prasad
+ *
+ */
 public class MovieServiceRegistry {
 	
 	public Map<String, IMovieService> map = Maps.newHashMap();

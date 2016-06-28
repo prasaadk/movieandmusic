@@ -7,7 +7,7 @@ import org.junit.Test;
 public class IMDBSource2SearchEndpointTest {
 
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		assertEquals("should return 10 results", 10, new IMDBSource2SearchEndpoint().searchMovie("jaws").size());
 	}
 

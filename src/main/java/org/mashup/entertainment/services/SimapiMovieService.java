@@ -15,6 +15,11 @@ import com.mashape.unirest.http.Unirest;
 
 import rx.Observable;
 
+/**
+ * This is an experimental use of alternate API to find a collection of movies from SimApi Mashape
+ * @author prasad
+ *
+ */
 public class SimapiMovieService implements IMovieService {
 	
 	public static final String MOVIE_URI="https://simapi.p.mashape.com/m.php?";
